@@ -65,10 +65,6 @@ export  const List = ({ createOpen }) => {
     setOpen(false);
   };
 
-  const hanldeOpen = () => {
-    setOpen(true);
-  };
-
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} >
@@ -135,7 +131,6 @@ export  const List = ({ createOpen }) => {
               count={cars.length}
               rowsPerPage={rowsPerPage}
               page={page}
-
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={PaginationActions}
