@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import {useStyles} from '../../../helpers';
+import {useStyles} from '../ModalStyle';
 
 import Modal from '@material-ui/core/Modal';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import { createCar} from '../../../api';
+import { createCar} from '../../../../api';
 
 export const ModalWindowCreate = ({ handleClose, open, }) => {
   const [model, setModel] = useState('');

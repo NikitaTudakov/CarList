@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { editCar } from '../../../api';
-import {useStyles} from '../../../helpers';
+import { editCar } from '../../../../api';
+import {useStyles} from '../ModalStyle';
 
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
@@ -46,8 +46,8 @@ export const ModalWindowEdit = ({ handleClose, open, car }) => {
     >
       <form
         onSubmit={e => {
-          e.preventDefault();
           handleClose();
+          e.preventDefault();
           editCar(car.id, {
             brand,
             carNumber,
@@ -111,11 +111,11 @@ export const ModalWindowEdit = ({ handleClose, open, car }) => {
             </Button>
 
             <Button
+              type='submit'
               disabled={disabled}
               className={classes['button-main']}
               variant="contained"
               color="primary"
-              type="submit"
             >
               SAVE
             </Button>

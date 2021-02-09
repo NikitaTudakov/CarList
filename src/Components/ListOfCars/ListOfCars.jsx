@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { List } from '../List';
 import { createCar } from '../../api';
-import { ModalWindowCreate } from '../List/ModalWindowCreate';
+import { ModalWindowCreate } from '../List/Modals/ModalWindowCreate';
 import './ListOfCars.scss';
 
 import { Container } from '@material-ui/core';

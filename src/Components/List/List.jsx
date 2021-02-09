@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getCars, removeCar } from '../../api';
-import { ModalWindowEdit } from './ModalWindowEdit';
+import { ModalWindowEdit } from './Modals/ModalWindowEdit';
 import { PaginationActions } from '../../helpers';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
