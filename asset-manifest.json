@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/CarList/static/css/main.4c917d00.chunk.css",
-    "main.js": "/CarList/static/js/main.dba8bca7.chunk.js",
-    "main.js.map": "/CarList/static/js/main.dba8bca7.chunk.js.map",
+    "main.js": "/CarList/static/js/main.a8bc472e.chunk.js",
+    "main.js.map": "/CarList/static/js/main.a8bc472e.chunk.js.map",
     "runtime-main.js": "/CarList/static/js/runtime-main.62d561cf.js",
     "runtime-main.js.map": "/CarList/static/js/runtime-main.62d561cf.js.map",
-    "static/js/2.bd7f415f.chunk.js": "/CarList/static/js/2.bd7f415f.chunk.js",
-    "static/js/2.bd7f415f.chunk.js.map": "/CarList/static/js/2.bd7f415f.chunk.js.map",
+    "static/js/2.134a256b.chunk.js": "/CarList/static/js/2.134a256b.chunk.js",
+    "static/js/2.134a256b.chunk.js.map": "/CarList/static/js/2.134a256b.chunk.js.map",
     "index.html": "/CarList/index.html",
     "static/css/main.4c917d00.chunk.css.map": "/CarList/static/css/main.4c917d00.chunk.css.map",
-    "static/js/2.bd7f415f.chunk.js.LICENSE.txt": "/CarList/static/js/2.bd7f415f.chunk.js.LICENSE.txt",
+    "static/js/2.134a256b.chunk.js.LICENSE.txt": "/CarList/static/js/2.134a256b.chunk.js.LICENSE.txt",
     "static/media/Header.scss": "/CarList/static/media/Logo.ab2877a9.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.62d561cf.js",
-    "static/js/2.bd7f415f.chunk.js",
+    "static/js/2.134a256b.chunk.js",
     "static/css/main.4c917d00.chunk.css",
-    "static/js/main.dba8bca7.chunk.js"
+    "static/js/main.a8bc472e.chunk.js"
   ]
 }
