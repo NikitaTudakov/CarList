@@ -33,8 +33,6 @@ export const ModalWindowEdit = ({ handleClose, open, car }) => {
     } else {
       setDisabled(true);
     }
-
-    console.log('work')
   };
 
   const classes = useStyles();
