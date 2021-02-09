@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCars, removeCar } from '../../api';
-import PropTypes from 'prop-types';
+import { ModalWindowEdit } from './ModalWindowEdit';
+import { PaginationActions } from '../../helpers';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Table from '@material-ui/core/Table';
@@ -16,79 +17,30 @@ import IconButton from '@material-ui/core/IconButton';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
-import useTheme  from '@material-ui/core/styles/useTheme';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-
-const useStyles1 = makeStyles((theme) => ({
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(10),
-  },
-}));
-
-function PaginationActions (props) {
-  const classes = useStyles1();
-  const theme = useTheme();
-
-  const { count, page, rowsPerPage, onChangePage } = props;
-
-
-  const handleBackButtonClick = (event) => {
-    onChangePage(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onChangePage(event, page + 1);
-  };
-
-
-  return (
-    <div className={classes.root}>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-    </div>
-  );
-}
-
-PaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
-
-
-
-
-
 
 const useStyles2 = makeStyles({
   table: {
-    minWidth: 500,
+    minWidth: 300,
   },
 });
 
-export  const List = () => {
+export  const List = ({ createOpen }) => {
   const classes = useStyles2();
+
   const [update, setUpdate] = useState(false)
+  const [sorted, setSorted] = useState(false);
   const [page, setPage] = useState(0);
-  const [cars, setCars] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [cars, setCars] = useState([]);
+  const [isOpen, setOpen] = useState(false);
+  const [carInfo, setInfo] = useState({})
+
 
   useEffect(() => {
     getCars()
     .then(result => setCars(result.cars));
     setUpdate(false)
-  }, [update])
+  }, [update, isOpen, createOpen]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -99,12 +51,30 @@ export  const List = () => {
     setPage(0);
   };
 
+  const sortByBrand = () => {
+    if (!sorted) {
+      setCars([...cars].sort((car1,car2) => car1.brand.localeCompare(car2.brand)));
+    } else {
+      setCars([...cars].sort((car1,car2) => car2.brand.localeCompare(car1.brand)));
+    }
+
+    setSorted(prev => !prev);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const hanldeOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="custom pagination table">
+      <Table className={classes.table} >
         <TableHead>
           <TableRow>
-            <TableCell style={{fontWeight: 700 }}>
+            <TableCell style={{fontWeight: 700, cursor: 'pointer', }} onClick={sortByBrand}>
               Brand
             </TableCell>
             <TableCell style={{fontWeight: 700 }}>
@@ -140,16 +110,17 @@ export  const List = () => {
                 {car.model}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                <IconButton>
+                <IconButton onClick={() => {setOpen(true); setInfo(car)}}>
                   <EditOutlinedIcon style={{color: 'black'}}/>
                 </IconButton>
-                <IconButton>
+                <IconButton 
+                  onClick={() => {
+                    removeCar(`api/car/${car.id}`);
+                    setUpdate(true)
+                  }}
+                >
                   <DeleteOutlinedIcon
                     style={{color: 'red'}}
-                    onClick={() => {
-                      removeCar(`api/car/${car.id}`);
-                      setUpdate(true)
-                    }}
                   />
                 </IconButton>
               </TableCell>
@@ -171,7 +142,12 @@ export  const List = () => {
             />
           </TableRow>
         </TableFooter>
+        <ModalWindowEdit
+          open={isOpen}
+          handleClose={handleClose}
+          car={carInfo}
+          />
       </Table>
     </TableContainer>
   );
-}
+};
