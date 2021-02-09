@@ -19,6 +19,5 @@ appropriate API endpoints.
 Task 3 Car profile (optional)
 Final step is to add functionality to show information of a single car, and to be able to change
 the properties of the car.
----------------------------------------------------------------------------------------------------------------------------
 
 Design developed according to layout from figma https://www.figma.com/file/uYdoHXFqGhBRU2jzEBOhJ5/Test-task?node-id=0%3A1.
