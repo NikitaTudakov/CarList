@@ -29,12 +29,15 @@ export const createCar = (brand, model, carNumber, engineType) => {
 }
 
 export const removeCar = (url) => {
-  return request(url, {method: 'DELETE'})
+  return fetch(`${APi_URL}${url}`, {method: 'DELETE'})
 }
 
 export const editCar = (carId, data) => {
   return request(`api/car/${carId}`,{
     method: 'PATCH',
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    },
     body: JSON.stringify(data)
   });
 }
